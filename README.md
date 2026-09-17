@@ -1,6 +1,11 @@
 # Progold SDK
 
+# Progold SDK
+
 [![](https://jitpack.io/v/ch532/progold.svg)](https://jitpack.io/#ch532/progold)
+[![Maven Central](https://img.shields.io/maven-central/v/online.chyke/progold-sdk.svg)](https://central.sonatype.com/artifact/online.chyke/progold-sdk)
+
+Android SDK for connecting applications to agentic AI systems through capabilities, actions, sessions, and multi-turn execution.
 
 Progold is an Android SDK for connecting applications to agentic AI systems.
 
