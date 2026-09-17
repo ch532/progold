@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+group = 'com.pro.gold'
+version = '1.0.0'
+
+android {
+    namespace 'com.pro.gold'
+    compileSdk 36
+
+    defaultConfig {
+        minSdk 24
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.pro.gold'
+            artifactId = 'progold-sdk'
+            version = '1.0.0'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "localProgold"
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20250517'
+}

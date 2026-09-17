@@ -1,0 +1,446 @@
+
+===== com.pro.gold.ActionRegistry =====
+Compiled from "ActionRegistry.java"
+public final class com.pro.gold.ActionRegistry {
+  public com.pro.gold.ActionRegistry();
+  public void register(com.pro.gold.ActionSchema, com.pro.gold.AgentActionHandler);
+  public void register(java.lang.String, com.pro.gold.AgentActionHandler);
+  public void unregister(java.lang.String);
+  public boolean contains(java.lang.String);
+  public int size();
+  public java.util.Set<java.lang.String> getActionNames();
+  public com.pro.gold.ActionSchema getSchema(java.lang.String);
+  public org.json.JSONArray toJson();
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction);
+}
+
+===== com.pro.gold.ActionSchema =====
+Compiled from "ActionSchema.java"
+public final class com.pro.gold.ActionSchema {
+  public com.pro.gold.ActionSchema(java.lang.String, java.lang.String);
+  public com.pro.gold.ActionSchema(java.lang.String, java.lang.String, org.json.JSONObject);
+  public java.lang.String getName();
+  public java.lang.String getDescription();
+  public org.json.JSONObject getParameters();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.Agent =====
+Compiled from "Agent.java"
+public final class com.pro.gold.Agent {
+  public com.pro.gold.Agent(com.pro.gold.AgentConfig);
+  public com.pro.gold.Agent(com.pro.gold.AgentConfig, android.content.Context);
+  public com.pro.gold.AgentConfig getConfig();
+  public com.pro.gold.AgentTransport getTransport();
+  public com.pro.gold.AgentSessionManager getSessionManager();
+  public com.pro.gold.AgentTaskManager getTaskManager();
+  public com.pro.gold.ActionRegistry getActionRegistry();
+  public com.pro.gold.CapabilityRegistry getCapabilityRegistry();
+  public com.pro.gold.CapabilityActionRegistry getCapabilityActionRegistry();
+  public com.pro.gold.AuthorizationRegistry getAuthorizationRegistry();
+  public com.pro.gold.PermissionRegistry getPermissionRegistry();
+  public com.pro.gold.AgentPermissionChecker getPermissionChecker();
+  public com.pro.gold.CapabilityNegotiation getCapabilityNegotiation();
+  public com.pro.gold.AgentCapabilityManifest getCapabilityManifest();
+  public com.pro.gold.AgentActionExecutor getActionExecutor();
+  public com.pro.gold.AgentSession createSession();
+  public com.pro.gold.AgentSession getSession(java.lang.String);
+  public com.pro.gold.AgentConversation getConversation(java.lang.String);
+  public com.pro.gold.AgentConversation requireConversation(java.lang.String);
+  public com.pro.gold.AgentTask createTask(java.lang.String, java.lang.String);
+  public com.pro.gold.AgentRequest createRequest(com.pro.gold.AgentTask);
+  public com.pro.gold.AgentResponse send(com.pro.gold.AgentTask);
+  public void sendAsync(com.pro.gold.AgentTask, com.pro.gold.AgentCallback);
+  public com.pro.gold.AgentResponse execute(java.lang.String, java.lang.String);
+  public void executeAsync(java.lang.String, java.lang.String, com.pro.gold.AgentCallback);
+  public void registerCapability(com.pro.gold.AgentCapability, com.pro.gold.ActionSchema, com.pro.gold.AgentCapabilityHandler);
+  public void unregisterCapability(java.lang.String);
+  public void authorizeAction(java.lang.String);
+  public void denyAction(java.lang.String);
+  public void resetActionAuthorization(java.lang.String);
+  public void registerActionPermissions(java.lang.String, com.pro.gold.AgentPermission...);
+  public void registerCapabilityPermissions(java.lang.String, com.pro.gold.AgentPermission...);
+  public void clearActionPermissions(java.lang.String);
+  public com.pro.gold.AgentPermissionResult checkActionPermissions(java.lang.String);
+  public com.pro.gold.CapabilityNegotiationResult negotiateCapability(java.lang.String);
+  public com.pro.gold.CapabilityNegotiationResult negotiateCapability(java.lang.String, android.content.Context);
+  public com.pro.gold.AgentCapabilityDiscovery createCapabilityDiscovery();
+  public org.json.JSONObject discoverCapabilities(android.content.Context);
+  public java.util.List<com.pro.gold.AgentActionResult> executeActions(com.pro.gold.AgentTask, java.util.List<com.pro.gold.AgentAction>);
+  public org.json.JSONObject negotiateRemoteCapabilities(com.pro.gold.AgentNegotiationRequest);
+  public void sendNegotiationResponse(com.pro.gold.AgentTask, com.pro.gold.AgentNegotiationRequest, org.json.JSONObject);
+  public void removeSession(java.lang.String);
+  public void shutdown();
+}
+
+===== com.pro.gold.AgentAction =====
+Compiled from "AgentAction.java"
+public final class com.pro.gold.AgentAction {
+  public com.pro.gold.AgentAction(java.lang.String);
+  public com.pro.gold.AgentAction(java.lang.String, java.lang.String, org.json.JSONObject);
+  public java.lang.String getId();
+  public java.lang.String getName();
+  public org.json.JSONObject getParameters();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentActionExecution =====
+Compiled from "AgentActionExecution.java"
+public final class com.pro.gold.AgentActionExecution {
+  public com.pro.gold.AgentActionExecution(com.pro.gold.CapabilityActionRegistry, com.pro.gold.AuthorizationRegistry, com.pro.gold.PermissionRegistry, com.pro.gold.AgentPermissionChecker);
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction);
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction, android.content.Context);
+  public java.util.List<com.pro.gold.AgentActionResult> executeAll(java.util.List<com.pro.gold.AgentAction>);
+}
+
+===== com.pro.gold.AgentActionExecutor =====
+Compiled from "AgentActionExecutor.java"
+public final class com.pro.gold.AgentActionExecutor {
+  public com.pro.gold.AgentActionExecutor(com.pro.gold.CapabilityActionRegistry, com.pro.gold.AuthorizationRegistry, com.pro.gold.PermissionRegistry, com.pro.gold.AgentPermissionChecker);
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction);
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction, android.content.Context);
+}
+
+===== com.pro.gold.AgentActionHandler =====
+Compiled from "AgentActionHandler.java"
+public interface com.pro.gold.AgentActionHandler {
+  public abstract com.pro.gold.AgentActionResult handle(com.pro.gold.AgentAction);
+}
+
+===== com.pro.gold.AgentActionResult =====
+Compiled from "AgentActionResult.java"
+public final class com.pro.gold.AgentActionResult {
+  public static com.pro.gold.AgentActionResult success(java.lang.String, org.json.JSONObject);
+  public static com.pro.gold.AgentActionResult failure(java.lang.String, java.lang.String);
+  public java.lang.String getActionId();
+  public boolean isSuccessful();
+  public org.json.JSONObject getResult();
+  public java.lang.String getError();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentAuthorization =====
+Compiled from "AgentAuthorization.java"
+public final class com.pro.gold.AgentAuthorization {
+  public com.pro.gold.AgentAuthorization(java.lang.String);
+  public java.lang.String getActionName();
+  public com.pro.gold.AgentAuthorization$Status getStatus();
+  public boolean isAuthorized();
+  public void authorize();
+  public void deny();
+  public void reset();
+}
+
+===== com.pro.gold.AgentAuthorizationException =====
+
+===== com.pro.gold.AgentCallback =====
+Compiled from "AgentCallback.java"
+public interface com.pro.gold.AgentCallback {
+  public abstract void onSuccess(com.pro.gold.AgentResponse);
+  public abstract void onFailure(com.pro.gold.AgentResponse);
+}
+
+===== com.pro.gold.AgentCapability =====
+Compiled from "AgentCapability.java"
+public final class com.pro.gold.AgentCapability {
+  public com.pro.gold.AgentCapability(java.lang.String, java.lang.String);
+  public com.pro.gold.AgentCapability(java.lang.String, java.lang.String, java.lang.String, boolean, org.json.JSONObject);
+  public java.lang.String getName();
+  public java.lang.String getDescription();
+  public java.lang.String getVersion();
+  public boolean isEnabled();
+  public org.json.JSONObject getMetadata();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentCapabilityDiscovery =====
+
+===== com.pro.gold.AgentCapabilityHandler =====
+Compiled from "AgentCapabilityHandler.java"
+public interface com.pro.gold.AgentCapabilityHandler {
+  public abstract com.pro.gold.AgentActionResult handle(com.pro.gold.AgentAction);
+}
+
+===== com.pro.gold.AgentCapabilityManifest =====
+Compiled from "AgentCapabilityManifest.java"
+public final class com.pro.gold.AgentCapabilityManifest {
+  public com.pro.gold.AgentCapabilityManifest(com.pro.gold.CapabilityRegistry);
+  public com.pro.gold.CapabilityRegistry getRegistry();
+  public org.json.JSONObject toJson();
+  public org.json.JSONArray toJsonArray();
+  public boolean isEmpty();
+  public int size();
+}
+
+===== com.pro.gold.AgentConfig =====
+
+===== com.pro.gold.AgentConversation =====
+Compiled from "AgentConversation.java"
+public final class com.pro.gold.AgentConversation {
+  public com.pro.gold.AgentConversation(java.lang.String);
+  public java.lang.String getSessionId();
+  public synchronized void addMessage(com.pro.gold.AgentMessage);
+  public synchronized com.pro.gold.AgentMessage addUserMessage(java.lang.String);
+  public synchronized com.pro.gold.AgentMessage addAgentMessage(java.lang.String);
+  public synchronized com.pro.gold.AgentMessage addSystemMessage(java.lang.String);
+  public synchronized java.util.List<com.pro.gold.AgentMessage> getMessages();
+  public synchronized int size();
+  public synchronized boolean isEmpty();
+  public synchronized void clear();
+  public synchronized org.json.JSONArray toJson();
+  public synchronized org.json.JSONObject toJsonObject();
+}
+
+===== com.pro.gold.AgentDeviceContext =====
+Compiled from "AgentDeviceContext.java"
+public final class com.pro.gold.AgentDeviceContext {
+  public static com.pro.gold.AgentDeviceContext from(android.content.Context);
+  public java.lang.String getPackageName();
+  public java.lang.String getApplicationLabel();
+  public java.lang.String getVersionName();
+  public long getVersionCode();
+  public java.lang.String getAndroidVersion();
+  public int getSdkInt();
+  public java.lang.String getManufacturer();
+  public java.lang.String getModel();
+  public java.lang.String getDevice();
+  public java.lang.String getProduct();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentEvent =====
+
+===== com.pro.gold.AgentEventDispatcher =====
+Compiled from "AgentEventDispatcher.java"
+public final class com.pro.gold.AgentEventDispatcher {
+  public com.pro.gold.AgentEventDispatcher();
+  public void addListener(com.pro.gold.AgentEventListener);
+  public void removeListener(com.pro.gold.AgentEventListener);
+  public int listenerCount();
+  public void dispatch(com.pro.gold.AgentEvent);
+  public void shutdown();
+}
+
+===== com.pro.gold.AgentEventListener =====
+
+===== com.pro.gold.AgentExecutionConfig =====
+Compiled from "AgentExecutionConfig.java"
+public final class com.pro.gold.AgentExecutionConfig {
+  public com.pro.gold.AgentExecutionConfig();
+  public com.pro.gold.AgentExecutionConfig(int);
+  public int getMaxTurns();
+}
+
+===== com.pro.gold.AgentExecutionResult =====
+
+===== com.pro.gold.AgentExecutor =====
+Compiled from "AgentExecutor.java"
+public final class com.pro.gold.AgentExecutor {
+  public com.pro.gold.AgentExecutor(com.pro.gold.Agent);
+  public com.pro.gold.AgentExecutor(com.pro.gold.Agent, com.pro.gold.AgentExecutionConfig);
+  public com.pro.gold.AgentEventDispatcher getEventDispatcher();
+  public void addEventListener(com.pro.gold.AgentEventListener);
+  public void removeEventListener(com.pro.gold.AgentEventListener);
+  public com.pro.gold.AgentExecutionResult execute(com.pro.gold.AgentTask);
+  public void shutdown();
+}
+
+===== com.pro.gold.AgentHttpClient =====
+Compiled from "AgentHttpClient.java"
+public final class com.pro.gold.AgentHttpClient {
+  public com.pro.gold.AgentHttpClient();
+  public com.pro.gold.AgentHttpClient(int, int);
+  public com.pro.gold.AgentResponse send(com.pro.gold.AgentConfig, com.pro.gold.AgentRequest);
+}
+
+===== com.pro.gold.AgentMessage =====
+
+===== com.pro.gold.AgentNegotiationRequest =====
+Compiled from "AgentNegotiationRequest.java"
+public final class com.pro.gold.AgentNegotiationRequest {
+  public com.pro.gold.AgentNegotiationRequest(java.util.List<java.lang.String>, java.util.List<java.lang.String>);
+  public java.util.List<java.lang.String> getCapabilities();
+  public java.util.List<java.lang.String> getActions();
+  public boolean isEmpty();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentNegotiationResponse =====
+Compiled from "AgentNegotiationResponse.java"
+public final class com.pro.gold.AgentNegotiationResponse {
+  public com.pro.gold.AgentNegotiationResponse(com.pro.gold.AgentNegotiationRequest, org.json.JSONObject);
+  public com.pro.gold.AgentNegotiationRequest getRequest();
+  public org.json.JSONObject getEvaluation();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentPermission =====
+
+===== com.pro.gold.AgentPermissionChecker =====
+Compiled from "AgentPermissionChecker.java"
+public final class com.pro.gold.AgentPermissionChecker {
+  public com.pro.gold.AgentPermissionChecker(android.content.Context);
+  public boolean isGranted(java.lang.String);
+  public java.util.List<java.lang.String> getMissingPermissions(java.util.List<com.pro.gold.AgentPermission>);
+  public boolean areGranted(java.util.List<com.pro.gold.AgentPermission>);
+}
+
+===== com.pro.gold.AgentPermissionRequirement =====
+
+===== com.pro.gold.AgentPermissionResult =====
+Compiled from "AgentPermissionResult.java"
+public final class com.pro.gold.AgentPermissionResult {
+  public static com.pro.gold.AgentPermissionResult granted();
+  public static com.pro.gold.AgentPermissionResult denied(java.util.List<java.lang.String>);
+  public boolean isGranted();
+  public java.util.List<java.lang.String> getMissingPermissions();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentRequest =====
+Compiled from "AgentRequest.java"
+public final class com.pro.gold.AgentRequest {
+  public com.pro.gold.AgentRequest(java.lang.String, java.lang.String);
+  public com.pro.gold.AgentRequest(java.lang.String, java.lang.String, org.json.JSONObject);
+  public com.pro.gold.AgentRequest(java.lang.String, java.lang.String, org.json.JSONObject, org.json.JSONArray);
+  public com.pro.gold.AgentRequest(java.lang.String, java.lang.String, java.lang.String, org.json.JSONObject);
+  public com.pro.gold.AgentRequest(java.lang.String, java.lang.String, java.lang.String, org.json.JSONObject, org.json.JSONArray);
+  public java.lang.String getRequestId();
+  public java.lang.String getSessionId();
+  public java.lang.String getTask();
+  public org.json.JSONObject getContext();
+  public org.json.JSONArray getCapabilities();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentResponse =====
+
+===== com.pro.gold.AgentResponseParser =====
+Compiled from "AgentResponseParser.java"
+public final class com.pro.gold.AgentResponseParser {
+  public static com.pro.gold.AgentResponseParser$ParsedResponse parse(java.lang.String);
+}
+
+===== com.pro.gold.AgentSession =====
+
+===== com.pro.gold.AgentSessionManager =====
+Compiled from "AgentSessionManager.java"
+public final class com.pro.gold.AgentSessionManager {
+  public com.pro.gold.AgentSessionManager();
+  public com.pro.gold.AgentSession create();
+  public void add(com.pro.gold.AgentSession);
+  public com.pro.gold.AgentSession get(java.lang.String);
+  public com.pro.gold.AgentSession remove(java.lang.String);
+  public boolean contains(java.lang.String);
+  public int size();
+  public java.util.List<java.lang.String> getSessionIds();
+  public void clear();
+}
+
+===== com.pro.gold.AgentTask =====
+Compiled from "AgentTask.java"
+public final class com.pro.gold.AgentTask {
+  public com.pro.gold.AgentTask(java.lang.String, java.lang.String);
+  public java.lang.String getTaskId();
+  public java.lang.String getSessionId();
+  public java.lang.String getTask();
+  public long getCreatedAt();
+  public long getCompletedAt();
+  public com.pro.gold.AgentTask$Status getStatus();
+  public synchronized void start();
+  public synchronized void complete();
+  public synchronized void fail();
+  public synchronized void cancel();
+  public synchronized void addAction(com.pro.gold.AgentAction);
+  public synchronized void addActionResult(com.pro.gold.AgentActionResult);
+  public synchronized java.util.List<com.pro.gold.AgentAction> getActions();
+  public synchronized java.util.List<com.pro.gold.AgentActionResult> getActionResults();
+  public synchronized org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AgentTaskManager =====
+Compiled from "AgentTaskManager.java"
+public final class com.pro.gold.AgentTaskManager {
+  public com.pro.gold.AgentTaskManager();
+  public com.pro.gold.AgentTask create(java.lang.String, java.lang.String);
+  public com.pro.gold.AgentTask get(java.lang.String);
+  public com.pro.gold.AgentTask remove(java.lang.String);
+  public boolean contains(java.lang.String);
+  public int size();
+  public java.util.List<java.lang.String> getTaskIds();
+  public java.util.List<com.pro.gold.AgentTask> getTasksForSession(java.lang.String);
+  public void clear();
+}
+
+===== com.pro.gold.AgentTransport =====
+Compiled from "AgentTransport.java"
+public final class com.pro.gold.AgentTransport {
+  public com.pro.gold.AgentTransport();
+  public com.pro.gold.AgentTransport(com.pro.gold.AgentHttpClient);
+  public com.pro.gold.AgentResponse send(com.pro.gold.AgentConfig, com.pro.gold.AgentRequest);
+  public void sendAsync(com.pro.gold.AgentConfig, com.pro.gold.AgentRequest, com.pro.gold.AgentCallback);
+  public void shutdown();
+}
+
+===== com.pro.gold.AgentTurn =====
+Compiled from "AgentTurn.java"
+public final class com.pro.gold.AgentTurn {
+  public com.pro.gold.AgentTurn(com.pro.gold.AgentTurn$Type, org.json.JSONObject);
+  public java.lang.String getId();
+  public com.pro.gold.AgentTurn$Type getType();
+  public long getTimestamp();
+  public org.json.JSONObject getData();
+  public org.json.JSONObject toJson();
+}
+
+===== com.pro.gold.AuthorizationRegistry =====
+Compiled from "AuthorizationRegistry.java"
+public final class com.pro.gold.AuthorizationRegistry {
+  public com.pro.gold.AuthorizationRegistry();
+  public void register(java.lang.String);
+  public void authorize(java.lang.String);
+  public void deny(java.lang.String);
+  public void reset(java.lang.String);
+  public com.pro.gold.AgentAuthorization get(java.lang.String);
+  public boolean isAuthorized(java.lang.String);
+  public com.pro.gold.AgentAuthorization$Status getStatus(java.lang.String);
+  public void unregister(java.lang.String);
+  public int size();
+  public java.util.List<java.lang.String> getActionNames();
+  public org.json.JSONArray toJson();
+  public void clear();
+}
+
+===== com.pro.gold.CapabilityActionRegistry =====
+Compiled from "CapabilityActionRegistry.java"
+public final class com.pro.gold.CapabilityActionRegistry {
+  public com.pro.gold.CapabilityActionRegistry();
+  public void register(com.pro.gold.AgentCapability, com.pro.gold.ActionSchema, com.pro.gold.AgentCapabilityHandler);
+  public void unregister(java.lang.String);
+  public boolean contains(java.lang.String);
+  public com.pro.gold.RegisteredCapability get(java.lang.String);
+  public int size();
+  public java.util.List<com.pro.gold.RegisteredCapability> getCapabilities();
+  public com.pro.gold.AgentActionResult execute(com.pro.gold.AgentAction);
+}
+
+===== com.pro.gold.CapabilityNegotiation =====
+Compiled from "CapabilityNegotiation.java"
+public final class com.pro.gold.CapabilityNegotiation {
+  public com.pro.gold.CapabilityNegotiation(com.pro.gold.CapabilityRegistry, com.pro.gold.CapabilityActionRegistry, com.pro.gold.AuthorizationRegistry, com.pro.gold.PermissionRegistry, com.pro.gold.AgentPermissionChecker);
+  public com.pro.gold.CapabilityNegotiationResult negotiate(java.lang.String);
+  public com.pro.gold.CapabilityNegotiationResult negotiate(java.lang.String, android.content.Context);
+}
+
+===== com.pro.gold.CapabilityNegotiationResult =====
+Compiled from "CapabilityNegotiationResult.java"
+public final class com.pro.gold.CapabilityNegotiationResult {
+  public com.pro.gold.CapabilityNegotiationResult(java.lang.String, com.pro.gold.CapabilityState, java.util.List<java.lang.String>, java.lang.String);
+  public java.lang.String getCapabilityName();
+  public com.pro.gold.CapabilityState getState();
+  public java.util.List<java.lang.String> getMissingPermissions();
+  public java.lang.String getReason();
+  public boolean isReady();
+  public org.json.JSONObject toJson();
+  public java.lang.String toString();
+}
