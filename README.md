@@ -166,14 +166,9 @@ The SDK is published with:
 
 ## Artifact
 
-Group:
-com.pro.gold
-
-Artifact:
-progold-sdk
-
-Version:
-1.0.0
+Group: online.chyke
+Artifact: progold-sdk
+Version: 1.0.1
 
 ## License
 
