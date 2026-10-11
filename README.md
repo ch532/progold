@@ -31,7 +31,7 @@ It provides a structured framework for:
 
 ## Maven Coordinates
 
-implementation 'com.pro.gold:progold-sdk:1.0.0'
+implementation 'com.pro.gold:progold-sdk:1.0.1'
 
 ## Initialize Progold
 
